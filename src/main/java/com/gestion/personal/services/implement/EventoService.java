@@ -25,8 +25,7 @@ public class EventoService implements IEventoService {
         try {
             return LocalDate.parse(fechaStr, formatter);
         } catch (DateTimeParseException e) {
-            System.err.println("Fecha inválida: " + fechaStr);
-            return null; // O lanza una excepción si prefieres manejarlo así
+            return null;
         }
     }
 

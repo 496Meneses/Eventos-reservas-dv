@@ -18,5 +18,4 @@ public class PersonaService implements IPersonaService {
     public Optional<Persona> findById(Long id) {
         return personaRepository.findById(id);
     }
-
 }

@@ -3,27 +3,27 @@ package com.gestion.personal.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Table(name = "USUARIO")
+import java.io.Serializable;
+
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Usuario {
+@Data
+@Builder
+@Entity
+@Table(name = "tbl_usuario")
+public class Usuario implements Serializable {
 
-    @Id
-    private Long id;
-    @Column(name = "username")
-    private String username;
-    @Column(name = "password")
-    private String password;
-    @Column(name = "correo")
-    private String correo;
-
-    @ManyToOne
-    @JoinColumn(name = "id_personabigint", referencedColumnName = "id")
-    private Persona persona;
-
-    // Getters y Setters
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+	@Column(name = "correo")
+	private String correo;
+	@Column(name = "password")
+	private String password;
+	@ManyToOne
+	@JoinColumn(name = "id_rol")
+	private Rol rol;
 }
