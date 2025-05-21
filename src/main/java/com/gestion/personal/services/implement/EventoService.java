@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
@@ -103,8 +104,16 @@ public class EventoService implements IEventoService {
                 .filter(evento -> {
                     long reservas = reservaRepository.countByEvento(evento);
                     Reserva reserva = reservaRepository.findByEventoAndPersonaId(evento, idPersona);
-                    return (evento.getLimite() == null || reservas < evento.getLimite()) && reserva == null;
+                    return (evento.getLimite() == null || reservas < evento.getLimite()) && reserva == null && (this.esFechaFuturaSinHora(evento.getFecha()));
                 })
                 .toList().stream().map(this::mapearEvento).toList();
     }
+
+    public boolean esFechaFuturaSinHora(Date fechaEvento) {
+        LocalDate fechaEventoLocal = fechaEvento.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fechaActualLocal = LocalDate.now();
+
+        return !fechaEventoLocal.isBefore(fechaActualLocal);
+    }
+
 }
