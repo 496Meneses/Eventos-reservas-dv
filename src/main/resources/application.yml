@@ -6,10 +6,10 @@ spring:
     name: gestionPersonal
 
   datasource:
-    url: jdbc:mysql://localhost:3306/financiera?severTimezone=America/Bogota
-    #url: jdbc:mysql://root:QheksigHMZofgVGmMPnBVRzuXJRIUlXe@tramway.proxy.rlwy.net:47256/railway
-    username: root              # Cambia esto por tu usuario de MySQL
-    password: admin       # Cambia esto por tu contraseña de MySQL
+    url: jdbc:mysql://localhost:3306/davivienda?severTimezone=America/Bogota
+
+    username: root
+    password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       maximum-pool-size: 10

@@ -8,6 +8,7 @@ import com.gestion.personal.services.UsuarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +16,8 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class UsuarioServiceImpl implements UsuarioService {
-
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
@@ -27,7 +29,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	public UsuarioDTO crearUsuario(UsuarioDTO usuarioDTO) {
-		Usuario resultado = this.usuarioRepository.save(UsuarioMapper.mapearEntidad(usuarioDTO));
+		Usuario usuario = UsuarioMapper.mapearEntidad(usuarioDTO);
+		usuario.setPassword(passwordEncoder.encode(usuarioDTO.getPassword()));
+		Usuario resultado = this.usuarioRepository.save(usuario);
         return UsuarioMapper.mapearDTO(resultado);
     }
 

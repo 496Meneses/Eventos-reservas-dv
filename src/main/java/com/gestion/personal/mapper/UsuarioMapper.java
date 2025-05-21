@@ -16,7 +16,6 @@ public class UsuarioMapper {
 				.id(dto.getId())
 				.correo(dto.getCorreo())
 				.rol(dto.getIdRol() != null ? rol : null)
-				//.password(new BCryptPasswordEncoder().encode(dto.getPassword()))
 				.build();
 	}
 	public static UsuarioDTO mapearDTO(Usuario entidad) {

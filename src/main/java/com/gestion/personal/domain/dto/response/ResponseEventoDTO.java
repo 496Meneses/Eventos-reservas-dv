@@ -1,16 +1,18 @@
-package com.gestion.personal.domain.dto.request;
+package com.gestion.personal.domain.dto.response;
 
 import lombok.*;
+
+import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RequestEventoDTO {
+public class ResponseEventoDTO {
     private Long id;
     private String title;
-    private String date;
+    private Date date;
     private Integer limite;
     private ExtendedProps extendedProps;
     @Getter
